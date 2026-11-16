@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}About - Edge AI Smart Surveillance{% endblock %}
+
+{% block content %}
+<div class="space-y-12 py-4 max-w-5xl mx-auto">
+
+    <!-- Page Header Hero Card -->
+    <div class="card-3d p-8 md:p-12 rounded-3xl border border-slate-700/60 relative overflow-hidden space-y-4">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold tracking-wide uppercase">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Project Overview & Architecture</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+            Edge AI Based <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">Smart Surveillance</span>
+        </h1>
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light max-w-3xl">
+            Transforming conventional passive CCTV systems into active, intelligent sentinels. By attaching an edge computing device directly to the camera, the system analyses video frames locally in real-time, detects specific targets (Person, Dog, Cat, and Cow), sounds local alerts, and records event-triggered clips without depending on the cloud[cite: 3, 4, 10].
+        </p>
+    </div>
+
+    <!-- System Architecture & Pipeline Section -->
+    <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-white flex items-center space-x-3">
+            <i class="fa-solid fa-network-wired text-cyan-400"></i>
+            <span>System Pipeline & Layers</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Layer 1 -->
+            <div class="card-3d p-6 rounded-3xl space-y-3 border border-slate-700/50">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3 class="text-base font-bold text-white">1. Sensing Layer</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Captures live video streams using a dedicated <strong class="text-slate-200">Pi Camera Module (CSI)</strong> or standard USB webcam connected directly to the hardware board[cite: 5, 6].
+                </p>
+            </div>
+
+            <!-- Layer 2 -->
+            <div class="card-3d p-6 rounded-3xl space-y-3 border border-slate-700/50">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-base font-bold text-white">2. Intelligence Layer</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    OpenCV resizes frames and passes them to the on-device <strong class="text-slate-200">YOLOv8n</strong> neural network running locally on CPU to predict bounding boxes and confidence scores[cite: 5, 7].
+                </p>
+            </div>
+
+            <!-- Layer 3 -->
+            <div class="card-3d p-6 rounded-3xl space-y-3 border border-slate-700/50">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-base font-bold text-white">3. Response & Storage</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Filters detections strictly for target classes, records 4-second event clips onto local storage, and logs entries into an SQLite database viewable via Flask[cite: 3, 4].
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hardware & Software Specification Tables -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Hardware Components Card -->
+        <div class="card-3d p-6 rounded-3xl space-y-4 border border-slate-700/60">
+            <h3 class="text-lg font-bold text-white flex items-center space-x-2.5">
+                <i class="fa-solid fa-microchip text-cyan-400"></i>
+                <span>Hardware Specification</span>
+            </h3>
+            <ul class="space-y-3 text-xs text-slate-300 divide-y divide-slate-800">
+                <li class="pt-2 flex justify-between">
+                    <span class="font-semibold text-slate-200">Raspberry Pi 4 Model B (4GB)</span>
+                    <span class="text-slate-400">Edge Processing Unit[cite: 6]</span>
+                </li>
+                <li class="pt-3 flex justify-between">
+                    <span class="font-semibold text-slate-200">Pi Camera Module / USB Webcam</span>
+                    <span class="text-slate-400">Live Video Capture[cite: 6]</span>
+                </li>
+                <li class="pt-3 flex justify-between">
+                    <span class="font-semibold text-slate-200">Active Buzzer Module</span>
+                    <span class="text-slate-400">Instant Local Deterrent[cite: 6]</span>
+                </li>
+                <li class="pt-3 flex justify-between">
+                    <span class="font-semibold text-slate-200">MicroSD Card (32GB, Class 10)</span>
+                    <span class="text-slate-400">OS & Clip Storage[cite: 6]</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Software Stack Card -->
+        <div class="card-3d p-6 rounded-3xl space-y-4 border border-slate-700/60">
+            <h3 class="text-lg font-bold text-white flex items-center space-x-2.5">
+                <i class="fa-solid fa-code text-emerald-400"></i>
+                <span>Software Stack</span>
+            </h3>
+            <ul class="space-y-3 text-xs text-slate-300 divide-y divide-slate-800">
+                <li class="pt-2 flex justify-between">
+                    <span class="font-semibold text-slate-200">Raspberry Pi OS / Python 3</span>
+                    <span class="text-slate-400">Operating Environment[cite: 7]</span>
+                </li>
+                <li class="pt-3 flex justify-between">
+                    <span class="font-semibold text-slate-200">OpenCV</span>
+                    <span class="text-slate-400">Video Capture & Processing[cite: 7]</span>
+                </li>
+                <li class="pt-3 flex justify-between">
+                    <span class="font-semibold text-slate-200">YOLOv8n / Ultralytics</span>
+                    <span class="text-slate-400">Edge Object Detection[cite: 7]</span>
+                </li>
+                <li class="pt-3 flex justify-between">
+                    <span class="font-semibold text-slate-200">Flask & SQLite</span>
+                    <span class="text-slate-400">Web Dashboard & Database</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Advantages Banner -->
+    <div class="card-3d p-6 rounded-3xl border border-slate-700/60 space-y-4">
+        <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+            <i class="fa-solid fa-star text-amber-400"></i>
+            <span>Why Edge AI Beats Traditional Cloud Systems</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+            <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
+                <strong class="text-white block"><i class="fa-solid fa-wifi text-cyan-400 mr-1.5"></i> Offline Independence</strong>
+                <span>Works fully without constant internet connectivity. Detection and local alarms continue uninterrupted[cite: 10].</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
+                <strong class="text-white block"><i class="fa-solid fa-shield text-emerald-400 mr-1.5"></i> Enhanced Privacy</strong>
+                <span>Video footage stays local on your own device; raw video is never uploaded to third-party cloud servers[cite: 10].</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
+                <strong class="text-white block"><i class="fa-solid fa-database text-amber-400 mr-1.5"></i> Minimal Storage</strong>
+                <span>Discards uneventful frames and stores only short event-triggered clips, preventing storage bloat[cite: 10].</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
