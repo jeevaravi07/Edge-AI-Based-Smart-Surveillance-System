@@ -161,7 +161,7 @@ http://localhost:8000
 ## 👤 Author
 
 **Jeeva R**  
-*Machine Learning Engineer & IoT Systems Developer*  
+*Machine Learning Engineer*  
 📍 Bengaluru, India
 
 ---
