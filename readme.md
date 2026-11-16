@@ -18,6 +18,8 @@
 
 </div>
 
+---
+
 ## 📌 Project Metadata (For GitHub About Section)
 
 * **Repository Title:** `edge-ai-warehouse-surveillance`
